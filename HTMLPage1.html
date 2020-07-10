@@ -5,12 +5,86 @@
 <head>
   <meta charset="utf-8" />
   <title>JavaScript introduction</title>
-  <script>
-    alert("Hello world");
+    <style>
+        button {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            text-decoration: none;
+            background-color: burlywood;
+            color: initial;
+        }
+    </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js">
+<!--    alert("Hello world"); -->
+        function helloWorld() {
+            alert("Hello World through a function");
+          }
+      function helloWorldVar() {
+          var message = "Hello World through a variable";
+          alert(message);
+      }
+      function showCities() {
+          var cities = ["Tampa", "Jacksonville", "Orlando", "Miami", "Fort Lauderdale"];
+          var ulCity = document.getElementById("citylist");
+          for (var city in cities) {
+              var cityListItem = document.createElement("li");
+              var cityListItemText = document.createTextNode(cities[city]);
+              cityListItem.appendChild(cityListItemText);
+              var listItem = ulCity.appendChild(cityListItem);
+          }
+      }
+          function getCitiesFromUser() {
+              var city1 = prompt("Enter first of 4 Cities?", "Tampa");
+              var city2 = prompt("Enter second of 4 Cities?", "Tampa");
+              var city3 = prompt("Enter third of 4 Cities?", "Tampa");
+              var city4 = prompt("Enter fourth of 4 Cities?", "Tampa");
+              var cities = [city1, city2, city3, city4];
+              var ulCity = document.createElement("ul");
+              for (var city in cities) {
+                  var cityListItem = document.createElement("li");
+                  var cityListItemText = document.createTextNode(cities[city]);
+                  cityListItem.appendChild(cityListItemText);
+                  var listItem = ulCity.appendChild(cityListItem);
+              }
+              var bodyNode = document.getElementsByTagName("body")[0];
+              bodyNode.appendChild(ulCity);
+      }
+
   </script>
 </head>
 
 <body>
-  <h1>Hello world - plain and simple</h1>
+    <h1>Hello world - plain and simple</h1>
+    <button onclick="alert('Hello World - Inline call');">Click here</button><br /><br />
+    <button onclick="helloWorld()" ">Click for function</button><br /><br />
+    <button onclick="helloWorldVar()" ">Click for variable f{x}</button><br /><br />
+    <button onclick="document.location='HTMLPage2.html'">Go to Page 2</button>
+    <h2>JavaScript DOM Manipulation</h2>
+    <button onclick="showCities()">Click for Cities list f{x}</button><br /><br />
+    <ul id="citylist"></ul>
+    <button onclick="getCitiesFromUser()">Click to get Cities from user f{x}</button><br /><br />
+    <canvas id="barchartexample" width="300" height="150"></canvas>
+    <script>
+        new Chart(document.getElementById("barchartexample"), {
+            type: 'bar',
+            data: {
+                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                datasets: [
+                    {
+                        label: "Population (millions)",
+                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                        data: [2478, 5267, 734, 784, 433]
+                    }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Predicted world population (millions) in 2050'
+                }
+            }
+        });
+    </script>
 </body>
 </html>
